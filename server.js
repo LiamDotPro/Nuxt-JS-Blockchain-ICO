@@ -4,15 +4,21 @@ let R = require('ramda');
 let app = express();
 let http = require('http').Server(app);
 let io = require('socket.io')(http);
+let rp = require('request-promise');
+let cors = require('cors');
+
+app.use(cors());
 
 app.use(express.static(__dirname + '/server'));
 
 app.get('/', (req, res) => {
-
-
+  res.send('hello')
 });
 
-app.get('/', () => {
+app.get('/test', (req, res) => {
+  rp('https://www.cryptopia.co.nz/api/GetMarketOrders/DOT_BTC/1').then((_res) => {
+    res.send(_res);
+  })
 
 });
 

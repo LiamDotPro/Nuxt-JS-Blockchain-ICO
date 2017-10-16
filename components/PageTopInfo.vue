@@ -10,8 +10,9 @@
             Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
           </p>
           <p class="mb-0">
-            Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            {{ pair }}
           </p>
+          <button class="btn btn-default" @click="testAxios">Test</button>
         </div>
       </div>
     </div>
@@ -19,10 +20,23 @@
 </template>
 
 <script>
+  import axios from 'axios'
+
   export default {
     name: 'PageTopInfo',
     data() {
-      return {}
+      return {
+        pair: 'loading'
+      }
+    },
+    methods: {
+      testAxios: function () {
+        axios.get('http://localhost:2000/test').then(res => {
+          this.pair = res.data.Data.Buy[0].Price
+        }).catch((e) => {
+          console.log(e)
+        })
+      }
     }
   }
 </script>

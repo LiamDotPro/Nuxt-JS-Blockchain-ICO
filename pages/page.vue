@@ -1,19 +1,21 @@
 <template>
   <div class="">
-    <h1>{{ getCounter }}</h1>
-    <button @click="increaseCounter">Add</button>
-    <button @click="increaseCounters">Add</button>
+    <h1>login</h1>
+    <input v-model="userName" id="username" placeholder="username" type="text">
+    <input v-model="passWord" id="password" placeholder="password" type="text">
+    <button class="btn btn-success">Login</button>
   </div>
 </template>
 
 <script>
-  import socket from '../plugins/socket.io'
+  // import socket from '../plugins/socket.io'
 
   export default {
     name: '',
     data() {
       return {
-        msg: ''
+        userName: '',
+        passWord: ''
       }
     },
     methods: {
@@ -30,9 +32,7 @@
       }
     },
     mounted() {
-      socket.emit('test', {
-        hello: 'hello'
-      })
+
     }
   }
 </script>
